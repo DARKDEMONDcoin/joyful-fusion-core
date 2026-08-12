@@ -16,6 +16,7 @@ import {
   FaqSection,
   PainSection,
   PlansSection,
+  PartnersSection,
   PopularTracksSection,
   PricingSection,
 
@@ -147,6 +148,7 @@ function Index() {
     <div dir="rtl" className="paper-grain min-h-screen overflow-x-hidden bg-background font-arabic">
       <Hero />
 
+      <PartnersSection />
       <TrustStrip />
       <Marquee items={ticker} />
 
