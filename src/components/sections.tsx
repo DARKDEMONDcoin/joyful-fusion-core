@@ -112,17 +112,17 @@ const partnerLogos = [
 export function PartnersSection() {
   return (
     <section
-      aria-label="شركاء وشراكات استراتيجية"
+      aria-label="شركات تثق بنا وتدعمنا"
       className="border-b border-border bg-secondary/25 py-10 md:py-12"
     >
       <div className="mx-auto max-w-6xl px-6 md:px-14">
         <p className="text-center text-[11px] font-semibold tracking-[0.28em] text-muted-foreground">
-          شركاء وشراكات استراتيجية
+          شركات تثق بنا وتدعمنا
         </p>
 
-        <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-8 sm:gap-x-16">
+        <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-8 sm:gap-x-16">
           {partnerLogos.map((l) => (
-            <li key={l.name} className="group">
+            <li key={l.name} className="group flex flex-col items-center gap-2.5">
               <svg
                 viewBox="0 0 24 24"
                 role="img"
@@ -132,6 +132,9 @@ export function PartnersSection() {
                 <title>{l.name}</title>
                 <path d={l.path} />
               </svg>
+              <span className="text-[12px] font-medium tracking-wide text-muted-foreground transition-colors duration-300 group-hover:text-foreground">
+                {l.name}
+              </span>
             </li>
           ))}
         </ul>
