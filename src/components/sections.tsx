@@ -84,7 +84,118 @@ function Card({ children }: { children: React.ReactNode }) {
 }
 
 
+/* ============================ شركاء التقنية والثقة ============================ */
+
+const partners = [
+  {
+    name: "Google",
+    role: "شريك سحابي وتحليلات",
+    desc: "بنبني عليها بنية المنصة والتحليلات: Google Cloud لتشغيل الدروس بسرعة في أي مكان، وGA4 لقياس كل خطوة في مسار الطالب بدقة.",
+    perk: "أدوات Google Cloud & Workspace داخل المسارات",
+  },
+  {
+    name: "Amazon",
+    role: "بنية تحتية وسوق عالمي",
+    desc: "AWS بتشيل التخزين والتسليم العالمي للمحتوى، وسوق أمازون نفسه واحد من قنوات الدخل اللي بندرّبك تبيع فيها بالدولار من مصر.",
+    perk: "دليل بيع وتشغيل عملي على AWS و Amazon",
+  },
+  {
+    name: "Alibaba",
+    role: "شريك سلاسل توريد",
+    desc: "مصدر التوريد الأساسي لمسار التجارة الإلكترونية: انتقاء مصانع، تفاوض أسعار، وحساب هامش الربح قبل ما تصرف جنيه.",
+    perk: "قوالب تفاوض وتسعير جاهزة للتوريد",
+  },
+  {
+    name: "GitHub",
+    role: "شريك تطوير ومصادر",
+    desc: "كل السكربتات والقوالب والأتمتة بتتسلّم من ريبو منظّم عليه، وبتتعلّم تشتغل بالطريقة اللي الفرق المحترفة بتشتغل بيها فعلًا.",
+    perk: "ريبو خاص بالطلاب + تحديثات مستمرة",
+  },
+  {
+    name: "Supabase",
+    role: "شريك بيانات وحسابات",
+    desc: "قاعدة البيانات والمصادقة والدفع الآمن للمنصة قايمين عليها، ونفس الاستاك بتتعلّمه لتبني عليه منتجاتك ومشاريع عملائك.",
+    perk: "استاك جاهز تبني بيه منتجك الأول",
+  },
+];
+
+export function PartnersSection() {
+  return (
+    <section
+      aria-label="شركاء وثقة"
+      className="relative border-b border-border bg-secondary/25 py-14 md:py-20"
+    >
+      <div className="mx-auto max-w-6xl px-6 md:px-14">
+        <div className="mb-10 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-[620px]">
+            <div className="mb-4 flex items-center gap-3" aria-hidden="true">
+              <span className="h-px w-10 bg-accent" />
+              <span className="text-[11px] font-semibold tracking-[0.28em] text-accent">
+                شراكات استراتيجية
+              </span>
+            </div>
+            <h2 className="font-display text-[clamp(26px,4.4vw,44px)] font-bold leading-[1.15] text-foreground">
+              أدوات ومنصات <span className="text-accent">عالمية</span> شغّالة جوه المنصة
+            </h2>
+          </div>
+          <p className="max-w-[330px] text-[14.5px] leading-[1.9] text-muted-foreground">
+            إحنا مش بنعلّمك على أدوات وهمية. المنصة نفسها متبنية على نفس التقنيات اللي الشركات
+            الكبيرة بتشتغل بيها — وإنت بتتعلّم عليها بنفس المستوى.
+          </p>
+        </div>
+
+        <ul className="grid gap-px overflow-hidden rounded-[2px] border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+          {partners.map((p) => (
+            <li
+              key={p.name}
+              className="group relative flex flex-col bg-background p-7 transition-colors duration-300 hover:bg-secondary/50"
+            >
+              <span
+                className="pointer-events-none absolute inset-x-0 top-0 h-px scale-x-0 bg-accent transition-transform duration-500 group-hover:scale-x-100"
+                aria-hidden="true"
+              />
+              <p
+                dir="ltr"
+                className="font-display text-[26px] font-bold tracking-[-0.02em] text-foreground"
+              >
+                {p.name}
+              </p>
+              <p className="mt-1 text-[11.5px] font-semibold tracking-[0.16em] text-accent">
+                {p.role}
+              </p>
+              <p className="mt-4 flex-1 text-[14.5px] leading-[1.95] text-muted-foreground">
+                {p.desc}
+              </p>
+              <p className="mt-5 flex items-start gap-2 border-t border-border pt-4 text-[13px] text-secondary-foreground">
+                <Check size={15} className="mt-[3px] shrink-0 text-accent" aria-hidden="true" />
+                {p.perk}
+              </p>
+            </li>
+          ))}
+          <li className="flex flex-col justify-center bg-secondary/40 p-7">
+            <p className="text-[15px] font-semibold leading-relaxed text-foreground">
+              + كريدت واشتراكات مجانية على منصات ذكاء اصطناعي
+            </p>
+            <p className="mt-3 text-[13.5px] leading-[1.9] text-muted-foreground">
+              Megsy AI و Lovable وأشهر نماذج الذكاء الاصطناعي والفيديو — بتيجي مع الاشتراك عشان تبدأ
+              بيزنسك بـ 0 دولار.
+            </p>
+          </li>
+        </ul>
+
+        <p className="mt-6 text-[12px] leading-relaxed text-muted-foreground">
+          الأسماء والعلامات التجارية أعلاه ملك أصحابها، ومذكورة كمنصات وأدوات تقنية معتمدة داخل
+          المنصة والمسارات.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+
 /* ============================ شريط الثقة ============================ */
+
+
 
 export function TrustStrip() {
   const items = [
