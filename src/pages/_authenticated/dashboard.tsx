@@ -80,6 +80,15 @@ function Dashboard() {
     refetchInterval: (q) => (justPaid && !q.state.data?.has_access ? 3000 : false),
   });
 
+  // Fire the Meta Pixel Purchase event once when access is confirmed after
+  // returning from Kashier (the webhook flips has_access to true).
+  const firedPurchase = useRef(false);
+  useEffect(() => {
+    if (justPaid && data?.has_access && !firedPurchase.current) {
+      firedPurchase.current = true;
+      trackPurchase(COURSE_PRICE_EGP, "EGP");
+    }
+  }, [justPaid, data?.has_access]);
 
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
