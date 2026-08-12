@@ -150,9 +150,11 @@ function Index() {
 
       <PainSection />
       <TracksList />
-      <CurriculumSection />
+      <PopularTracksSection />
       <UspSection />
+      <PlansSection />
       <BonusSection />
+      <CurriculumSection />
       <PricingSection />
       <Proof />
       <FaqSection />
