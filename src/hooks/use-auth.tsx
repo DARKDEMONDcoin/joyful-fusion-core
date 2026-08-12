@@ -81,9 +81,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const { session, setSession, loading } = useSupabaseSession();
 
   // ClerkProvider يلفّ الشجرة دائمًا، فالـ hooks تُستدعى بدون شروط.
-  const clerkAuth = useClerkAuth();
-  const clerkUser = useClerkUser();
-  const clerk = useClerk();
+  // بدون مفتاح Clerk مفيش ClerkProvider، فبنقرأ الهوكس بشكل آمن.
+  const safe = <T,>(fn: () => T): T | null => {
+    try {
+      return fn();
+    } catch {
+      return null;
+    }
+  };
+  const clerkAuth = safe(() => useClerkAuth());
+  const clerkUser = safe(() => useClerkUser());
+  const clerk = safe(() => useClerk());
 
   const clerkSignedIn = Boolean(clerkAuth?.isSignedIn);
   const clerkLoaded = clerkEnabled ? Boolean(clerkAuth?.isLoaded) : true;
