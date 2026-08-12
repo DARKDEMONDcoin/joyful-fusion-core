@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://egyptian-empire-quest.lovable.app/sitemap.xml
