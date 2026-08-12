@@ -50,6 +50,22 @@ function ScrollToTop() {
   return null;
 }
 
+/** Meta Pixel: fire PageView on every client-side navigation (skip the first — base code did it). */
+function PixelPageViews() {
+  const { pathname } = useLocation();
+  const first = useRef(true);
+
+  useEffect(() => {
+    if (first.current) {
+      first.current = false;
+      return;
+    }
+    trackPageView();
+  }, [pathname]);
+
+  return null;
+}
+
 /** Client-side auth gate: keeps the user signed in until they log out. */
 function RequireAuth({ children }: { children?: ReactNode }) {
   const { session, loading } = useAuth();
