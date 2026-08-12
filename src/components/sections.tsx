@@ -1666,3 +1666,75 @@ export function PlansSection() {
     </section>
   );
 }
+
+/* ============================ مش كورس فيديوهات — متابعة لايف ============================ */
+
+const liveSteps = [
+  {
+    n: "01",
+    t: "جلسة تشخيص لايف",
+    d: "بنقعد معاك مباشرة نشوف وقتك وفلوسك ومهاراتك، ونختار محرك الدخل المناسب ليك بالاسم — مش نصيحة عامة لكل الناس.",
+  },
+  {
+    n: "02",
+    t: "تنفيذ معاك على الشاشة",
+    d: "بنفتح معاك الحساب والأداة والمتجر ونظبط العرض والسعر خطوة بخطوة في جلسة لايف — إنت بتنفّذ وإحنا معاك.",
+  },
+  {
+    n: "03",
+    t: "مراجعة أسبوعية على شغلك",
+    d: "كل أسبوع بنراجع أرقامك: رسائل العملاء، ردودك، صفحة المنتج، الإعلانات — ونقولك بالظبط الخطأ وتعديله.",
+  },
+  {
+    n: "04",
+    t: "ما بنسيبكش قبل النتيجة",
+    d: "المتابعة مستمرة معاك لحد ما تبني أصل رقمي شغّال ودخل بيتكرر — ولو تعطّلت، بنرجع نظبط الخطة من الأول.",
+  },
+];
+
+export function LiveMentorshipSection() {
+  return (
+    <section id="live" className="border-t border-border py-16 md:py-20">
+      <div className="mx-auto max-w-6xl px-6 md:px-14">
+        <Head
+          title="إحنا مش كورس فيديوهات — إحنا متابعة لايف لكل مشترك"
+          accent="الفرق الجوهري"
+          sub="الفيديوهات موجودة كمرجع، لكن اللي بيفرق فعلاً إن فيه حد بيقعد معاك مباشرة على شغلك إنت لحد ما تشوف نتيجة. هدفنا مش إنك «تخلّص كورس» — هدفنا إنك تبني دخل حقيقي وتوصل لحرية مالية بشغل موثّق وقانوني."
+        />
+
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {liveSteps.map((s) => (
+            <Card key={s.n}>
+              <span className="text-sm font-semibold tracking-[0.08em] text-accent">{s.n}</span>
+              <h3 className="mb-3 mt-4 text-[17px] font-semibold text-foreground">{s.t}</h3>
+              <p className="text-[14.5px] leading-relaxed text-muted-foreground">{s.d}</p>
+            </Card>
+          ))}
+        </div>
+
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
+          {[
+            ["جلسات لايف أسبوعية", "مواعيد ثابتة كل أسبوع + تسجيل الجلسة لو غبت"],
+            ["رد على أسئلتك خلال 24 ساعة", "جروب خاص للمشتركين ومراجعة على شغلك"],
+            ["متابعة فردية للجاهزين", "باقة المتابعة الشخصية بجلسات 1‑على‑1 وأماكن محدودة"],
+          ].map(([t, d]) => (
+            <div key={t} className="border-t border-border pt-5">
+              <p className="text-[15.5px] font-semibold text-foreground">{t}</p>
+              <p className="mt-2 text-[14px] leading-relaxed text-muted-foreground">{d}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-10 flex flex-col items-start justify-between gap-5 border border-border bg-secondary px-7 py-6 sm:flex-row sm:items-center">
+          <p className="max-w-2xl text-[14.5px] leading-[1.9] text-secondary-foreground">
+            <span className="font-semibold text-foreground">الوصف القانوني بوضوح:</span> إحنا نقدّم
+            تعليم ومتابعة تنفيذية (تدريب وإرشاد عملي) على بناء أعمال ومهارات رقمية — مش استشارات
+            مالية ولا استثمارية، ومش فرصة ربح سريع، ومفيش أي ضمان لدخل أو أرباح. النتيجة بتعتمد على
+            تنفيذك ووقتك والسوق اللي تختاره.
+          </p>
+          <PrimaryButton to="/auth">احضر أول جلسة مجانًا</PrimaryButton>
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -14,6 +14,7 @@ import {
   CurriculumSection,
   faqs,
   FaqSection,
+  LiveMentorshipSection,
   PainSection,
   PlansSection,
   PartnersSection,
@@ -153,6 +154,7 @@ function Index() {
       <Marquee items={ticker} />
 
       <PainSection />
+      <LiveMentorshipSection />
       <TracksList />
       <PopularTracksSection />
       <UspSection />
