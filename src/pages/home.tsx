@@ -14,6 +14,7 @@ import {
   CurriculumSection,
   faqs,
   FaqSection,
+  LiveMentorshipSection,
   PainSection,
   PlansSection,
   PartnersSection,
@@ -153,6 +154,7 @@ function Index() {
       <Marquee items={ticker} />
 
       <PainSection />
+      <LiveMentorshipSection />
       <TracksList />
       <PopularTracksSection />
       <UspSection />
@@ -210,9 +212,10 @@ function Hero() {
           </h1>
 
           <p className="animate-fade-rise-delay mt-8 max-w-2xl text-[16px] leading-relaxed text-muted-foreground sm:text-[18px]">
-            مش سبوبة ولا شغل فريلانس بالساعة. ده نظام كامل لبناء أصول رقمية بتملكها: 12 محرك دخل —
-            تجارة إلكترونية، ذكاء اصطناعي وأتمتة، منتجات واشتراكات، ووكالات — بخطة يوم بيوم من أول
-            دولار يوصلك لحد بيزنس بيكبر من غيرك.
+            إحنا مش كورس فيديوهات — إحنا متابعة <span className="text-foreground">لايف</span> لكل
+            مشترك على شغله لحد ما يبني دخل حقيقي. 12 محرك دخل: تجارة إلكترونية، ذكاء اصطناعي
+            وأتمتة، منتجات واشتراكات، ووكالات — بخطة يوم بيوم، وأدوات واشتراكات جاهزة تبدأ بيها
+            بـ 0$.
           </p>
 
 
