@@ -12,7 +12,7 @@ import {
 import { ClerkProvider } from "@clerk/clerk-react";
 
 import { AuthProvider, useAuth } from "@/hooks/use-auth";
-import { CLERK_PUBLISHABLE_KEY } from "@/lib/clerk-supabase";
+import { CLERK_PUBLISHABLE_KEY, clerkEnabled } from "@/lib/clerk-supabase";
 import { RouteNotFound } from "@/lib/router";
 import { Route as HomeRoute } from "@/pages/home";
 import { Route as AboutRoute } from "@/pages/about";
@@ -70,10 +70,19 @@ function RequireAuth({ children }: { children?: ReactNode }) {
   return <>{children ?? <Outlet />}</>;
 }
 
+function ClerkGate({ children }: { children: ReactNode }) {
+  if (!clerkEnabled) return <>{children}</>;
+  return (
+    <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY} afterSignOutUrl="/">
+      {children}
+    </ClerkProvider>
+  );
+}
+
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY} afterSignOutUrl="/">
+      <ClerkGate>
       <AuthProvider>
         <BrowserRouter>
           <ScrollToTop />
@@ -101,7 +110,7 @@ export default function App() {
           </Routes>
         </BrowserRouter>
       </AuthProvider>
-      </ClerkProvider>
+      </ClerkGate>
     </QueryClientProvider>
   );
 }

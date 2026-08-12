@@ -725,6 +725,29 @@ export function SiteFooter() {
           </div>
         </div>
 
+        <div className="grid gap-4 border-t border-border py-6 sm:grid-cols-2">
+          <div>
+            <p className="mb-3 text-[13px] font-semibold text-foreground">طرق الدفع</p>
+            <div className="flex flex-wrap gap-2 text-[12px] text-muted-foreground">
+              {["فيزا", "ماستركارد", "ميزة", "Apple Pay", "فودافون كاش", "تقسيط valU"].map((m) => (
+                <span key={m} className="border border-border px-2.5 py-1">
+                  {m}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div>
+            <p className="mb-3 text-[13px] font-semibold text-foreground">أمان وضمان</p>
+            <div className="flex flex-wrap gap-2 text-[12px] text-muted-foreground">
+              {["اتصال مشفّر SSL", "3D Secure", "Kashier معتمد", "سياسة استرداد واضحة"].map((m) => (
+                <span key={m} className="border border-border px-2.5 py-1">
+                  {m}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
         <div className="flex flex-col gap-2 border-t border-border py-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} {company.shortNameAr} — كل الحقوق محفوظة.
@@ -1386,6 +1409,191 @@ export function UspSection() {
             </div>
           </div>
         ))}
+      </div>
+    </section>
+  );
+}
+
+/* ============================ الأكثر طلبًا ============================ */
+
+export function PopularTracksSection() {
+  const popular = tracks.slice(0, 6);
+
+  return (
+    <section id="popular" className="border-t border-border bg-secondary/30 py-16 md:py-20">
+      <div className="mx-auto max-w-6xl px-6 md:px-14">
+        <Head
+          title="أكتر المسارات اللي الناس بتبدأ بيها"
+          accent="الأكثر طلبًا"
+          sub="كل كارت بيوضّح مدى الدخل المتوقع في السوق، وقت أول فلوس، مستوى الصعوبة، ورأس المال المطلوب — تختار على أساس وقتك وفلوسك مش على أساس الحماس."
+        />
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {popular.map((t) => (
+            <Link
+              key={t.slug}
+              to="/tracks/$slug"
+              params={{ slug: t.slug }}
+              className="glass-card hover-lift flex h-full flex-col p-7"
+            >
+              <span className="text-sm font-semibold tracking-[0.08em] text-accent">{t.n}</span>
+              <h3 className="mb-3 mt-3.5 text-lg font-semibold text-foreground">{t.title}</h3>
+              <p className="flex-1 text-[15px] leading-relaxed text-muted-foreground">{t.short}</p>
+              <dl className="mt-6 grid grid-cols-2 gap-3 border-t border-border pt-4 text-[12.5px]">
+                <div>
+                  <dt className="text-muted-foreground">أول فلوس</dt>
+                  <dd className="mt-0.5 font-semibold text-foreground">{t.timeToFirstMoney}</dd>
+                </div>
+                <div>
+                  <dt className="text-muted-foreground">المستوى</dt>
+                  <dd className="mt-0.5 font-semibold text-foreground">{t.difficulty}</dd>
+                </div>
+                <div>
+                  <dt className="text-muted-foreground">رأس المال</dt>
+                  <dd className="mt-0.5 font-semibold text-foreground">{t.capital}</dd>
+                </div>
+                <div>
+                  <dt className="text-muted-foreground">مدى الدخل</dt>
+                  <dd dir="ltr" className="mt-0.5 text-left font-semibold text-accent">
+                    {t.income}
+                  </dd>
+                </div>
+              </dl>
+            </Link>
+          ))}
+        </div>
+        <div className="mt-12 flex flex-wrap items-center gap-6">
+          <PrimaryButton to="/tracks">شوف كل المسارات</PrimaryButton>
+          <Link
+            to="/auth"
+            className="text-sm text-secondary-foreground underline decoration-border underline-offset-4 hover:opacity-60"
+          >
+            أو ابدأ بحساب مجاني
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ============================ خطط الاشتراك ============================ */
+
+const plans = [
+  {
+    name: "البداية — مجانًا",
+    price: "0",
+    unit: "جنيه",
+    note: "تفتح حساب وتشوف المنصة من جوه قبل أي دفع.",
+    cta: "ابدأ مجانًا",
+    to: "/auth",
+    highlight: false,
+    features: [
+      ["حساب على المنصة ولوحة تحكم", true],
+      ["مقدمة كل مسار من الـ 12 + خطة أول 3 أيام", true],
+      ["الوصول الكامل للـ 12 مسار", false],
+      ["قوالب وسكربتات البيع", false],
+      ["اشتراكات وكريدت الأدوات (Megsy AI وغيرها)", false],
+      ["جروب الطلاب والدعم المباشر", false],
+    ] as [string, boolean][],
+  },
+  {
+    name: "الباقة الكاملة",
+    price: "999",
+    unit: "جنيه — دفعة واحدة",
+    note: "كل المسارات والأدوات والدعم، ووصول مدى الحياة بدون اشتراك شهري.",
+    cta: "خُد الباقة الكاملة",
+    to: "/checkout",
+    highlight: true,
+    features: [
+      ["حساب على المنصة ولوحة تحكم", true],
+      ["الوصول الكامل للـ 12 مسار + 8 وحدات", true],
+      ["خطة 60 يوم مكتوبة يوم بيوم", true],
+      ["قوالب وسكربتات البيع جاهزة", true],
+      ["اشتراك Megsy AI + كريدت Claude ونماذج الفيديو", true],
+      ["كريدت Unlimited على Lovable + اشتراكات تانية", true],
+      ["جروب الطلاب والدعم خلال 24 ساعة", true],
+      ["تحديثات مدى الحياة", true],
+    ] as [string, boolean][],
+  },
+  {
+    name: "متابعة شخصية",
+    price: "بالطلب",
+    unit: "أماكن محدودة",
+    note: "الباقة الكاملة + مراجعة شغلك ومتابعة أسبوعية لحد أول عميل.",
+    cta: "اطلب مكانك",
+    to: "/contact",
+    highlight: false,
+    features: [
+      ["كل اللي في الباقة الكاملة", true],
+      ["مراجعة عرضك وتسعيرك شخصيًا", true],
+      ["متابعة أسبوعية على تنفيذك", true],
+      ["أولوية في الرد على أسئلتك", true],
+    ] as [string, boolean][],
+  },
+];
+
+export function PlansSection() {
+  return (
+    <section id="plans" className="border-t border-border py-16 md:py-20">
+      <div className="mx-auto max-w-6xl px-6 md:px-14">
+        <Head
+          title="اختار طريقة البداية اللي تناسبك"
+          accent="الخطط والأسعار"
+          sub="تقدر تبدأ بـ 0 جنيه وتشوف المنصة بنفسك. ولو جاهز تنفّذ، الباقة الكاملة دفعة واحدة ومعاها اشتراكات الأدوات — يعني تبدأ البيزنس فعليًا بـ 0$ مصاريف أدوات."
+          center
+        />
+        <div className="grid gap-5 lg:grid-cols-3">
+          {plans.map((p) => (
+            <div
+              key={p.name}
+              className={`glass-card flex h-full flex-col p-7 ${
+                p.highlight ? "border-accent ring-1 ring-accent/40" : ""
+              }`}
+            >
+              {p.highlight && (
+                <span className="mb-4 inline-flex w-fit border border-accent px-3 py-1 text-[11px] font-semibold tracking-[0.2em] text-accent">
+                  الأكثر اختيارًا
+                </span>
+              )}
+              <h3 className="text-lg font-semibold text-foreground">{p.name}</h3>
+              <div className="mt-4 flex items-end gap-2">
+                <span className="text-4xl font-semibold text-accent">{p.price}</span>
+                <span className="pb-1.5 text-[13px] text-muted-foreground">{p.unit}</span>
+              </div>
+              <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground">{p.note}</p>
+              <ul className="my-7 grid flex-1 gap-3.5">
+                {p.features.map(([f, ok]) => (
+                  <li
+                    key={f}
+                    className={`flex items-start gap-3 text-[14.5px] ${
+                      ok ? "text-secondary-foreground" : "text-muted-foreground/70"
+                    }`}
+                  >
+                    {ok ? (
+                      <Check size={16} className="mt-1 shrink-0 text-accent" />
+                    ) : (
+                      <X size={16} className="mt-1 shrink-0 text-muted-foreground/60" />
+                    )}
+                    <span className={ok ? "" : "line-through decoration-border"}>{f}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                to={p.to}
+                className={
+                  p.highlight
+                    ? "block bg-primary py-4 text-center text-[15px] font-medium text-primary-foreground transition-colors hover:bg-foreground"
+                    : "block border border-border py-4 text-center text-[15px] font-medium text-foreground transition-colors hover:border-accent hover:text-accent"
+                }
+              >
+                {p.cta}
+              </Link>
+            </div>
+          ))}
+        </div>
+        <p className="mt-8 text-center text-[13px] leading-relaxed text-muted-foreground">
+          الدفع مؤمّن بالكامل عبر Kashier بـ 3D Secure · فيزا وماستركارد وميزة والمحافظ الإلكترونية
+          والتقسيط · مراجعة سياسة الاسترداد قبل الشرا.
+        </p>
       </div>
     </section>
   );
