@@ -13,6 +13,7 @@ import { ClerkProvider } from "@clerk/clerk-react";
 
 import { AuthProvider, useAuth } from "@/hooks/use-auth";
 import { CLERK_PUBLISHABLE_KEY, clerkEnabled } from "@/lib/clerk-supabase";
+import { trackPageView } from "@/lib/pixel";
 import { RouteNotFound } from "@/lib/router";
 import { Route as HomeRoute } from "@/pages/home";
 import { Route as AboutRoute } from "@/pages/about";
