@@ -15,6 +15,8 @@ import {
   faqs,
   FaqSection,
   PainSection,
+  PlansSection,
+  PopularTracksSection,
   PricingSection,
 
   SiteFooter,
