@@ -725,6 +725,29 @@ export function SiteFooter() {
           </div>
         </div>
 
+        <div className="grid gap-4 border-t border-border py-6 sm:grid-cols-2">
+          <div>
+            <p className="mb-3 text-[13px] font-semibold text-foreground">طرق الدفع</p>
+            <div className="flex flex-wrap gap-2 text-[12px] text-muted-foreground">
+              {["فيزا", "ماستركارد", "ميزة", "Apple Pay", "فودافون كاش", "تقسيط valU"].map((m) => (
+                <span key={m} className="border border-border px-2.5 py-1">
+                  {m}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div>
+            <p className="mb-3 text-[13px] font-semibold text-foreground">أمان وضمان</p>
+            <div className="flex flex-wrap gap-2 text-[12px] text-muted-foreground">
+              {["اتصال مشفّر SSL", "3D Secure", "Kashier معتمد", "سياسة استرداد واضحة"].map((m) => (
+                <span key={m} className="border border-border px-2.5 py-1">
+                  {m}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
         <div className="flex flex-col gap-2 border-t border-border py-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} {company.shortNameAr} — كل الحقوق محفوظة.

@@ -219,7 +219,7 @@ function Hero() {
               to="/auth"
               className="liquid-glass group inline-flex items-center justify-center gap-2 rounded-full px-14 py-5 text-base text-foreground transition-transform hover:scale-[1.03]"
             >
-              ابدأ مسارك دلوقتي
+              ابدأ مجانًا — من غير أي فلوس
               <ArrowLeft
                 size={17}
                 className="transition-transform duration-300 group-hover:-translate-x-1"
