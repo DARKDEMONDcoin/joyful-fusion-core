@@ -103,6 +103,7 @@ export default function App() {
       <AuthProvider>
         <BrowserRouter>
           <ScrollToTop />
+          <PixelPageViews />
           <Routes>
             <Route path="/" element={<HomeRoute.Page />} />
             <Route path="/about" element={<AboutRoute.Page />} />
