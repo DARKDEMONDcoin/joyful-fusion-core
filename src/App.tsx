@@ -1,4 +1,4 @@
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   BrowserRouter,
@@ -13,6 +13,7 @@ import { ClerkProvider } from "@clerk/clerk-react";
 
 import { AuthProvider, useAuth } from "@/hooks/use-auth";
 import { CLERK_PUBLISHABLE_KEY, clerkEnabled } from "@/lib/clerk-supabase";
+import { trackPageView } from "@/lib/pixel";
 import { RouteNotFound } from "@/lib/router";
 import { Route as HomeRoute } from "@/pages/home";
 import { Route as AboutRoute } from "@/pages/about";
@@ -46,6 +47,22 @@ function ScrollToTop() {
     }
     window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
   }, [pathname, hash]);
+
+  return null;
+}
+
+/** Meta Pixel: fire PageView on every client-side navigation (skip the first — base code did it). */
+function PixelPageViews() {
+  const { pathname } = useLocation();
+  const first = useRef(true);
+
+  useEffect(() => {
+    if (first.current) {
+      first.current = false;
+      return;
+    }
+    trackPageView();
+  }, [pathname]);
 
   return null;
 }
@@ -86,6 +103,7 @@ export default function App() {
       <AuthProvider>
         <BrowserRouter>
           <ScrollToTop />
+          <PixelPageViews />
           <Routes>
             <Route path="/" element={<HomeRoute.Page />} />
             <Route path="/about" element={<AboutRoute.Page />} />

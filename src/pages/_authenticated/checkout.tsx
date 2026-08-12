@@ -7,6 +7,7 @@ import { Check, Loader2 } from "lucide-react";
 import { BackButton } from "@/components/BackButton";
 import { COURSE_INCLUDES } from "@/components/sections";
 import { COURSE_PRICE_EGP, createKashierCheckout, getMyStudent } from "@/lib/course.functions";
+import { trackInitiateCheckout } from "@/lib/pixel";
 
 const title = "الباقة والدفع | كورس الشغل أونلاين";
 const description =
@@ -67,6 +68,7 @@ function CheckoutPage() {
 
   async function onPay() {
     setPaying(true);
+    trackInitiateCheckout(COURSE_PRICE_EGP, "EGP");
     try {
       const { url } = await startCheckout();
       window.location.href = url;
