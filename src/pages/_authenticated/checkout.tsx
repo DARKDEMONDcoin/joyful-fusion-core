@@ -67,6 +67,7 @@ function CheckoutPage() {
 
   async function onPay() {
     setPaying(true);
+    trackInitiateCheckout(COURSE_PRICE_EGP, "EGP");
     try {
       const { url } = await startCheckout();
       window.location.href = url;
